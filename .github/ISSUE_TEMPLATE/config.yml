@@ -1,0 +1,12 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: Security issue
+    url: https://github.com/zaccesss/vitafolio-latex/security/advisories/new
+    about: Report privately, never in a public issue.
+  - name: Problem compiling a CV on Vitafolio
+    url: https://github.com/zaccesss/vitafolio/issues/new/choose
+    about: Most compile problems belong in the main Vitafolio repository.
+  - name: Prefer the website?
+    url: https://isaacadjei.me/contact
+    about: Get in touch through the contact page instead.
