@@ -1,0 +1,4 @@
+# the engine release this site publishes. Vitafolio's texlyre-busytex npm version must match.
+# to update: change both lines and push. The Pages workflow republishes after checking the hash
+VERSION=1.4.0
+SHA256=1caa434fb5aab5bdd59dc303bca2ac7b9b9af02ef1627bf8652caabfa1b7cd2b

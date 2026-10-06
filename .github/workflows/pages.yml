@@ -1,0 +1,57 @@
+name: Publish the engine
+
+# downloads the pinned BusyTeX release, checks its SHA-256 against assets.lock and publishes it to
+# GitHub Pages. The files are too large for git (two are over 100 MB), so they never enter the repo.
+
+on:
+  push:
+    branches: [main]
+    paths: [assets.lock, site/**, .github/workflows/pages.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Download and verify the engine
+        run: |
+          set -euo pipefail
+          . ./assets.lock
+          url="https://github.com/TeXlyre/texlyre-busytex/releases/download/assets-v${VERSION}/busytex-assets.tar.gz"
+          curl --fail --location --silent --show-error --retry 3 --output busytex.tar.gz "$url"
+          echo "${SHA256}  busytex.tar.gz" | sha256sum --check --strict
+          mkdir -p _site
+          tar -xzf busytex.tar.gz -C _site
+          rm busytex.tar.gz
+          cp -R site/. _site/
+          echo "${VERSION}" > _site/VERSION
+          du -sh _site
+
+      - name: Configure Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deploy
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
