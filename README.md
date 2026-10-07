@@ -16,8 +16,10 @@ The site is <https://zaccesss.github.io/vitafolio-latex/>.
 | `busytex/texlive-extra.*` | TeX Live Extra | About 330 MB |
 | `busytex/biber.*` | Biber, for bibliographies | About 30 MB |
 
-Vitafolio's starter templates use packages from all three TeX Live collections, so the editor loads
-the full set once and the browser keeps it.
+The editor loads the engine and TeX Live Basic up front, about 120 MB on the first visit, which
+covers every starter template. Recommended and Extra are listed as a catalogue: a document that uses
+one of their packages downloads that collection when it first compiles. The browser keeps every file
+it has downloaded.
 
 ## How it works
 
