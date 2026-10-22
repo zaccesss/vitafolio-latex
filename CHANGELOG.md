@@ -5,6 +5,8 @@ All notable changes to this repository are recorded here. The format follows
 
 ## Unreleased
 
+## 0.0.1 - 2026-10-22
+
 ### Added
 
 - Publishes BusyTeX 1.4.0 with TeX Live Basic, Recommended and Extra to GitHub Pages, checked against a
