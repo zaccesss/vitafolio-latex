@@ -5,9 +5,16 @@ All notable changes to this repository are recorded here. The format follows
 
 ## Unreleased
 
+## 0.1.0 - 2026-11-03
+
+### Added
+
+- A badge row and a diagram of how the engine gets from the BusyTeX release to a visitor's browser.
+
 ### Changed
 
 - Community files follow the [AI policy](https://github.com/zaccesss/ai-policy): pull requests declare AI use and issue forms ask whether AI helped.
+- Routine tidy-up.
 
 ## 0.0.1 - 2026-10-22
 
